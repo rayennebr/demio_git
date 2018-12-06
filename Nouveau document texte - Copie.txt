@@ -1,0 +1,68 @@
+package com.example.acer.myapplication;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.accessibility.AccessibilityManager;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+private Button b ;
+private Spinner s ;
+private EditText nom ;
+private String msg="voici vos coordonneés " ;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        b=(Button)findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                nom=(EditText)findViewById(R.id.editText);
+                msg+=nom.getText()+" ,";
+                RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup);
+                RadioButton ro=(RadioButton)findViewById(rg.getCheckedRadioButtonId());
+                msg+=" "+ro.getText()+" ,";
+
+                CheckBox op1=(CheckBox) findViewById(R.id.checkBox);
+                CheckBox op2=(CheckBox) findViewById(R.id.checkBox2);
+                CheckBox op3=(CheckBox) findViewById(R.id.checkBox3);
+
+                if(op1.isChecked()){
+                    msg+=" "+op1.getText()+" ,";
+                }
+                if(op2.isChecked()){
+                    msg+=" "+op2.getText()+" ,";
+                }
+                if(op3.isChecked()){
+                    msg+=" "+op3.getText()+", ";
+                }
+               Spinner s=(Spinner)findViewById(R.id.spinner);
+               msg+=" "+s.getSelectedItem().toString()+", ";
+
+Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_LONG).show();
+            }
+
+        });
+
+
+
+
+
+
+
+    }
+
+}
+
+
+
